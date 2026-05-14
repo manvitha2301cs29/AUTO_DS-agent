@@ -1,0 +1,50 @@
+# AutoML v5 — base configuration
+# Override locally via config.local.yaml (gitignored) or environment variables.
+# Env-var convention: AUTOML_<SECTION>_<KEY>=value
+# e.g. AUTOML_PIPELINE_MAX_RETRIES=5
+
+pipeline:
+  max_retries: 3
+  db_path: "db/automl_history.db"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  enable_cors: true
+  batch_max_size: 100
+
+llm:
+  default_model: "gpt-4o-mini"
+  backoff_base_delay: 1.0
+  backoff_max_attempts: 3
+
+tuning:
+  n_trials: 30
+  timeout_seconds: 300
+  max_candidate_models: 5
+  n_jobs: 1
+
+cv:
+  n_splits: 5
+
+evaluation:
+  thresholds:
+    f1_weighted: 0.72
+    accuracy: 0.70
+    r2: 0.50
+  ci_bootstrap_samples: 1000
+  fairness_enabled: false
+  fairness_sensitive_features: []
+
+autoeda:
+  correlation_method: "pearson"
+
+drift:
+  drift_check_interval_days: 7
+  auto_retrain_on_drift: false
+
+mlflow:
+  enabled: false
+  tracking_uri: "mlruns"
+  experiment_name: "automl_v5"
+  log_models: false

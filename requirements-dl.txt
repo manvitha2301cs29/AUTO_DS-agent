@@ -1,0 +1,13 @@
+# AutoML LangGraph — Deep Learning optional dependencies
+# Install ONLY if you need the deep_learning model candidate:
+#
+#   pip install -r requirements-dl.txt
+#
+# This is kept separate because TensorFlow is ~600 MB and is only
+# used when model_key == "deep_learning" (guarded by try/except).
+#
+# NOTE: TensorFlow 2.16+ is required for Python 3.12 support.
+# TensorFlow dropped Keras 2 in 2.16; tf.keras now points to Keras 3.
+# If your code uses tf.keras, it will still work as-is.
+
+tensorflow>=2.16,<3.0
